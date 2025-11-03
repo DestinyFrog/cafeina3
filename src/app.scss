@@ -1,0 +1,61 @@
+@use "sass:map";
+
+* {
+	font-family: 'Courier New', Courier, monospace;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: black;
+
+	overscroll-behavior-block: contain;
+	overscroll-behavior-y: none;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+}
+
+#app {
+	width: 100%;
+	height: 100%;
+}
+
+$categories: (
+    "hidrogênio": #8c0250,
+    "metal_alcalino": #f5a80b,
+    "metal_alcalino_terroso": #ff6600,
+    "metal_de_transição": #970700,
+    "ametal": #008000,
+    "semimetal": #aa007a,
+    "outros_metais": #ff007f,
+    "halogênio": #304ee6,
+    "gás_nobre": #7525FA,
+    "lantanídeo": #054f77,
+    "actinídeo": #4169e1,
+    "desconhecido": #333333
+);
+
+@each $category, $color in $categories {
+    .category-#{$category} {
+        background-color: #{$color};
+    }
+}
+
+$fases: (
+    "S": #ffffff,
+    "L": #ff2222,
+    "G": #aaaaff,
+);
+
+@each $fase, $color in $fases {
+    .fase-#{$fase} {
+        color: #{$color};
+    }
+
+    .fase-#{$fase} p, .fase-#{$fase} li {
+        color: #{$color};
+    }
+}
