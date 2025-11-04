@@ -6,21 +6,35 @@
 
     const max = "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d10 7p6"
 
-    const data = []
+    interface DistributionUnit {
+        layer: number,
+        sublayer: string,
+        eletrons: number
+    }
+
+    const data: DistributionUnit[] = []
     const regex = /(\d+)([a-z])(\d+)/
 
     max.split(' ').forEach(item => {
         const match = item.match(regex);
         if (match) {
             data.push({
-                digito1: match[1],
-                letra: match[2],
-                digito2: match[3]
+                layer: Number(match[1]),
+                sublayer: match[2],
+                eletrons: Number(match[3])
             });
         }
     })
 
-    console.log()
+    function sublayer_to_num(sublayer: string) {
+        switch (sublayer) {
+            case 's': return 1
+            case 'p': return 2
+            case 'd': return 3
+            case 'f': return 4
+        }
+    }
+
 </script>
 
 {#snippet arrow(ax: number, ay: number, bx: number, by: number)}
@@ -40,14 +54,10 @@
             </marker>
         </defs>
 
-        <!-- {@render arrow(10, 10, 40, 20)} -->
-
-        {#each "spdf" as sublevel, i}
-            {#each [1, 2, 3, 4, 5, 6, 7] as j}
-                <text x={i * unit + border} y={j * unit + border}>
-                    { j }{ sublevel }
-                </text>
-            {/each}
+        {#each data as { layer, sublayer, eletrons }}
+            <text x={sublayer_to_num(sublayer)!  * unit + border} y={layer * unit + border}>
+                { layer }{ sublayer }
+            </text>
         {/each}
     </svg>
     {/snippet}
