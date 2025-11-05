@@ -4,6 +4,7 @@
 	import Shortcut from "./lib/features/Shortcut.svelte"
 
 	import icon_periodic_table from './assets/icon_periodic_table.svg'
+	import icon_diagram_linus_pauling from './assets/icon_diagram_linus_pauling.svg'
 
     import PeriodicTable from "./lib/windows/PeriodicTable.svelte"
     import LinusPauling from "./lib/windows/LinusPauling.svelte"
@@ -15,7 +16,10 @@
 		icon={icon_periodic_table}
 		onclick={() => mount(PeriodicTable, { target: get_main() })}/>
 
-	<LinusPauling/>
+	<Shortcut
+		title="Diagrama de Linus Pauling"
+		icon={icon_diagram_linus_pauling}
+		onclick={() => mount(LinusPauling, { target: get_main() })}/>
 </main>
 
 <style scoped>
