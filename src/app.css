@@ -1,1 +1,102 @@
-*{font-family:"Courier New",Courier,monospace;margin:0;padding:0;box-sizing:border-box;color:#000;overscroll-behavior-block:contain;overscroll-behavior-y:none}body{width:100vw;height:100vh;display:flex;flex-direction:row}#app{width:100%;height:100%}.category-hidrogênio{background-color:#8c0250}.category-metal_alcalino{background-color:#f5a80b}.category-metal_alcalino_terroso{background-color:#ff6600}.category-metal_de_transição{background-color:#970700}.category-ametal{background-color:#008000}.category-semimetal{background-color:#aa007a}.category-outros_metais{background-color:#ff007f}.category-halogênio{background-color:#304ee6}.category-gás_nobre{background-color:#7525FA}.category-lantanídeo{background-color:#054f77}.category-actinídeo{background-color:#4169e1}.category-desconhecido{background-color:#333333}.fase-S{color:#ffffff}.fase-S p,.fase-S li{color:#ffffff}.fase-L{color:#ff2222}.fase-L p,.fase-L li{color:#ff2222}.fase-G{color:#aaaaff}.fase-G p,.fase-G li{color:#aaaaff}
+@charset "UTF-8";
+
+* {
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+  overscroll-behavior-block: contain;
+  overscroll-behavior-y: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.category-hidrogênio {
+  background-color: #8c0250;
+}
+
+.category-metal_alcalino {
+  background-color: #f5a80b;
+}
+
+.category-metal_alcalino_terroso {
+  background-color: #ff6600;
+}
+
+.category-metal_de_transição {
+  background-color: #970700;
+}
+
+.category-ametal {
+  background-color: #008000;
+}
+
+.category-semimetal {
+  background-color: #aa007a;
+}
+
+.category-outros_metais {
+  background-color: #ff007f;
+}
+
+.category-halogênio {
+  background-color: #304ee6;
+}
+
+.category-gás_nobre {
+  background-color: #7525FA;
+}
+
+.category-lantanídeo {
+  background-color: #054f77;
+}
+
+.category-actinídeo {
+  background-color: #4169e1;
+}
+
+.category-desconhecido {
+  background-color: #333333;
+}
+
+.fase-S {
+  color: #ffffff;
+}
+
+.fase-S p,
+.fase-S li {
+  color: #ffffff;
+}
+
+.fase-L {
+  color: #ff2222;
+}
+
+.fase-L p,
+.fase-L li {
+  color: #ff2222;
+}
+
+.fase-G {
+  color: #aaaaff;
+}
+
+.fase-G p,
+.fase-G li {
+  color: #aaaaff;
+}
+
+/*# sourceMappingURL=app.css.map */

@@ -1,22 +1,8 @@
 <script lang="ts">
     import Window from "../features/Window.svelte"
 
-    const unit = 24
-    const border = 10
-
-    const data = ("1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d10 7p6")
-        .split(' ')
-        .map(item => {
-            const match = item.match(/(\d+)([a-z])(\d+)/)!
-
-            const layer = Number(match[1])
-            const sublayer = match[2]
-            const eletrons = Number(match[3])
-            const x = (sublayer_to_num(sublayer) - 1)  * unit + border
-            const y = (layer - 1) * unit + border
-
-            return { layer, sublayer, eletrons, x, y }
-        })
+    const unit = 28
+    const border = 16
 
     function sublayer_to_num(sublayer: string): number {
         switch (sublayer) {
@@ -27,6 +13,25 @@
             default: return 0
         }
     }
+
+    function handle_distribution(data: string) {
+        const [ , layer, sublayer, eletrons ] = data.match(/(\d+)([a-z])(\d+)/)!
+
+        return {
+            layer: Number(layer),
+            sublayer,
+            eletrons: Number(eletrons)
+        }
+    }
+
+    const data = ("1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d10 7p6")
+        .split(' ')
+        .map(handle_distribution)
+        .map(data => ({
+            ... data,
+            x: (sublayer_to_num(data.sublayer) - 1)  * unit + border,
+            y: (data.layer - 1) * unit + border,
+        }))
 
     let width = data.reduce((prev, cur) => sublayer_to_num(cur.sublayer) > prev ? cur.layer : prev, 0) * unit + border * 2
     let height = data.reduce((prev, cur) => cur.layer > prev ? cur.layer : prev, 0) * unit + border * 2
