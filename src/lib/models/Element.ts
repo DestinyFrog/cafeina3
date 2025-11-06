@@ -30,8 +30,10 @@ export interface ElementPayload {
     family: number
     symbol: string
     fase?: Phase
-    xpos: number
-    ypos: number
+    pos_x_normal: number
+    pos_y_normal: number
+    pos_x_extended: number
+    pos_y_extended: number
     layers: string
     eletronic_configuration?: string
     oxidation_states: number[]
