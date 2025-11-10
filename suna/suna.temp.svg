@@ -1,0 +1,5 @@
+<svg viewBox="%start_x% %start_y% %end_x% %end_y%"
+    xmlns="http://www.w3.org/2000/svg">
+    <style>%css%</style>
+    %svg%
+</svg>

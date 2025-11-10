@@ -10,6 +10,7 @@
     let extended = $state(false)
     let elements: ElementPayload[] = $state([])
     let is_loading = $state(true)
+    let parent: Window
 
     onMount(() => {
         client
@@ -22,7 +23,7 @@
     function on_click(element: ElementPayload) {
         mount(Element, {
             target: get_main(),
-            props: { element },
+            props: { element, parent },
         })
     }
 
@@ -62,7 +63,7 @@
     </button>
 {/snippet}
 
-<Window title="Tabela Periódica">
+<Window title="Tabela Periódica" bind:this={parent}>
     {#snippet content()}
         {#if !is_loading}
             <div class="table-container">
@@ -91,159 +92,13 @@
 </Window>
 
 <style scoped>
-    .table-container {
-        padding: 10px;
-        overflow: auto;
-        max-width: 100%;
-        display: flex;
-        align-items: left;
-    }
+.periodic-table {
+    display: grid;
+    gap: 3px;
+}
 
-    .periodic-table {
-        display: grid;
-        gap: 4px;
-        margin: 0 auto;
-        max-width: max-content;
-    }
-
-    .periodic-table-cell {
-        position: relative;
-        width: 26px;
-        height: 26px;
-        border: 0;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: 'Segoe UI', system-ui, sans-serif;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .periodic-table-cell:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        border-color: #007acc;
-    }
-
-    .periodic-table-cell:active {
-        transform: translateY(0);
-    }
-
-    .symbol {
-        font-size: 1.1em;
-        font-weight: 700;
-        color: #1a1a1a;
-        line-height: 1;
-    }
-
-    .atomic-number {
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        font-size: 0.7em;
-        font-weight: 600;
-        color: #666;
-    }
-
-    .controls {
-        padding: 4px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .toggle {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        cursor: pointer;
-        padding: 8px 16px;
-        border-radius: 25px;
-        background: wheat;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .toggle:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .toggle input[type="checkbox"] {
-        display: none;
-    }
-
-    .toggle-slider {
-        width: 50px;
-        height: 24px;
-        background: #ccc;
-        border-radius: 25px;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .toggle-slider::before {
-        content: '';
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: white;
-        top: 2px;
-        left: 2px;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    input[type="checkbox"]:checked + .toggle-slider {
-        background: #007acc;
-    }
-
-    input[type="checkbox"]:checked + .toggle-slider::before {
-        transform: translateX(26px);
-    }
-
-    .toggle-label {
-        font-weight: 600;
-        color: #333;
-        user-select: none;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-        .periodic-table-cell {
-            width: 45px;
-            height: 45px;
-        }
-
-        .symbol {
-            font-size: 0.9em;
-        }
-
-        .atomic-number {
-            font-size: 0.6em;
-        }
-
-        .table-container {
-            padding: 10px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .periodic-table-cell {
-            width: 35px;
-            height: 35px;
-        }
-
-        .symbol {
-            font-size: 0.8em;
-        }
-
-        .atomic-number {
-            font-size: 0.5em;
-            top: 2px;
-            left: 2px;
-        }
-    }
+.periodic-table-cell {
+    width: 24px;
+    aspect-ratio: 1/1;
+}
 </style>

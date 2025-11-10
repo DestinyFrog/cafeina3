@@ -3,21 +3,18 @@
     import type { ElementPayload } from "../models/Element"
     import Window from "../features/Window.svelte"
 
-    const {
-        element
-    }: {
-        element: ElementPayload
+    const { element, parent }: {
+        element: ElementPayload,
+        parent: Window,
     } = $props()
-
-    console.log(element)
 </script>
 
-<Window title={ capitalize(element.oficial_name) }>
+<Window title={ capitalize(element.oficial_name) } start_x={parent.x}>
     {#snippet content()}
     <div class="element-box category-{normalize_category(element.category)} fase-{element.fase}">
         <p class="atomic-number">{ element.atomic_number }</p>
         <p class="symbol">{ element.symbol }</p>
-        <p class="name">{ element.oficial_name }</p>
+        <p class="name">{ capitalize(element.oficial_name) }</p>
 
         {#if element.atomic_mass}
             <p class="atomic-mass">{ element.atomic_mass } u</p>
